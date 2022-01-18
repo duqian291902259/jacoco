@@ -78,7 +78,9 @@ public class BarColumn implements IColumnRenderer {
 		final ICounter counter = total.getCounter(entity);
 		// td.text(integerFormat.format(counter.getMissedCount()));
 		// CC改造：missed统计改为覆盖统计
-		td.text(integerFormat.format(counter.getCoveredCount()));
+		String text = integerFormat.format(counter.getCoveredCount());
+		System.out.printf("[DQ-WARN] footer getCoveredCount=.%s ", text);
+		td.text(text);
 		td.text(" of ");
 		td.text(integerFormat.format(counter.getTotalCount()));
 	}

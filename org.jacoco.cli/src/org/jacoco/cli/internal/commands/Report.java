@@ -91,10 +91,10 @@ public class Report extends Command {
 			throws IOException {
 		final ExecFileLoader loader = new ExecFileLoader();
 		if (execfiles.isEmpty()) {
-			out.println("[WARN] No execution data files provided.");
+			out.println("[DQ-WARN] No execution data files provided.");
 		} else {
 			for (final File file : execfiles) {
-				out.printf("[INFO] Loading execution data file %s.%n",
+				out.printf("[DQ-INFO] Loading execution data file %s.%n",
 						file.getAbsolutePath());
 				loader.load(file);
 			}
@@ -117,12 +117,12 @@ public class Report extends Command {
 			final PrintWriter out) {
 		if (!nomatch.isEmpty()) {
 			out.println(
-					"[WARN] Some classes do not match with execution data.");
+					"[DQ-WARN] Some classes do not match with execution data.");
 			out.println(
-					"[WARN] For report generation the same class files must be used as at runtime.");
+					"[DQ-WARN] For report generation the same class files must be used as at runtime.");
 			for (final IClassCoverage c : nomatch) {
 				out.printf(
-						"[WARN] Execution data for class %s does not match.%n",
+						"[DQ-WARN] Execution data for class %s does not match.%n",
 						c.getName());
 			}
 		}
@@ -131,8 +131,8 @@ public class Report extends Command {
 	private void writeReports(final IBundleCoverage bundle,
 			final ExecFileLoader loader, final PrintWriter out)
 			throws IOException {
-		out.printf("[INFO] Analyzing %s classes.%n",
-				Integer.valueOf(bundle.getClassCounter().getTotalCount()));
+		out.printf("[DQ-INFO] Analyzing %s classes.%n",
+				bundle.getClassCounter().getTotalCount());
 		final IReportVisitor visitor = createReportVisitor();
 		visitor.visitInfo(loader.getSessionInfoStore().getInfos(),
 				loader.getExecutionDataStore().getContents());

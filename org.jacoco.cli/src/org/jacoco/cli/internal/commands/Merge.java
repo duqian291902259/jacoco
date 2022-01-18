@@ -36,14 +36,14 @@ public class Merge extends Command {
 
 	@Override
 	public String description() {
-		return "Merges multiple exec files into a new one.";
+		return "Merges multiple exec files into a new one.DQ";
 	}
 
 	@Override
 	public int execute(final PrintWriter out, final PrintWriter err)
 			throws IOException {
 		final ExecFileLoader loader = loadExecutionData(out);
-		out.printf("[INFO] Writing execution data to %s.%n",
+		out.printf("[DQ-INFO] Writing execution data to %s.%n",
 				destfile.getAbsolutePath());
 		loader.save(destfile, true);
 		return 0;
@@ -53,10 +53,10 @@ public class Merge extends Command {
 			throws IOException {
 		final ExecFileLoader loader = new ExecFileLoader();
 		if (execfiles.isEmpty()) {
-			out.println("[WARN] No execution data files provided.");
+			out.println("[DQ-WARN] No execution data files provided.");
 		} else {
 			for (final File file : execfiles) {
-				out.printf("[INFO] Loading execution data file %s.%n",
+				out.printf("[DQ-INFO] Loading execution data file %s.%n",
 						file.getAbsolutePath());
 				loader.load(file);
 			}

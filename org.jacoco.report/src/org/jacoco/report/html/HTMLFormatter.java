@@ -144,11 +144,12 @@ public class HTMLFormatter implements IHTMLReportContext {
 				new PercentageColumn(CounterEntity.BRANCH, locale), false);
 		addMissedTotalColumns(t, "Cxty", CounterEntity.COMPLEXITY);
 
-		// CC报告改造：标题中文并且将missed的数据比例，改成已经覆盖的比例
-		// addMissedTotalColumns(t, "Lines", CounterEntity.LINE);
+		// CC报告改造：标题中文并且将missed的数据比例，改成已经行覆盖的进度条，显示具体的数据（覆盖的行数、总行数）
+		// addMissedTotalColumns(t, "行", CounterEntity.LINE);
 		t.add("行覆盖", Styles.BAR, new BarColumn(CounterEntity.LINE, locale),
 				false);
 
+		System.out.println("dq-jacoco DQ-createTable change line2");
 		addMissedTotalColumns(t, "方法", CounterEntity.METHOD);
 		addMissedTotalColumns(t, "类", CounterEntity.CLASS);
 		return t;
