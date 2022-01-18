@@ -76,7 +76,9 @@ public class BarColumn implements IColumnRenderer {
 			final Resources resources, final ReportOutputFolder base)
 			throws IOException {
 		final ICounter counter = total.getCounter(entity);
-		td.text(integerFormat.format(counter.getMissedCount()));
+		// td.text(integerFormat.format(counter.getMissedCount()));
+		// CC改造：missed统计改为覆盖统计
+		td.text(integerFormat.format(counter.getCoveredCount()));
 		td.text(" of ");
 		td.text(integerFormat.format(counter.getTotalCount()));
 	}
