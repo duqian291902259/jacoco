@@ -101,12 +101,12 @@
             <id>default-descriptor</id>
             <phase>process-classes</phase>
           </execution>
-          <execution>
+          <!--<execution>
             <id>help-goal</id>
             <goals>
               <goal>helpmojo</goal>
             </goals>
-          </execution>
+          </execution>-->
           <execution>
             <id>report</id>
             <phase>package</phase>

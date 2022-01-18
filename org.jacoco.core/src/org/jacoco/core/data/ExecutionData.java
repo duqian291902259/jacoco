@@ -157,7 +157,8 @@ public final class ExecutionData {
 	 *            merge mode
 	 */
 	public void merge(final ExecutionData other, final boolean flag) {
-		//assertCompatibility(other.getId(), other.getName(), other.getProbes().length);
+		// assertCompatibility(other.getId(), other.getName(),
+		// other.getProbes().length);
 		// cc改造：去掉原有严格匹配ec数据的逻辑，方便合并不同提交点的覆盖率数据（前提是不同的修改没有影响，有影响的另外优化处理）
 		final boolean[] otherData = other.getProbes();
 		for (int i = 0; i < probes.length; i++) {
