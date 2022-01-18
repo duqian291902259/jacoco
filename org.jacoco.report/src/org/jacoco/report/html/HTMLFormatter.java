@@ -133,6 +133,7 @@ public class HTMLFormatter implements IHTMLReportContext {
 	private Table createTable() {
 		final Table t = new Table();
 		t.add("Element", null, new LabelColumn(), false);
+
 		t.add("Missed Instructions", Styles.BAR,
 				new BarColumn(CounterEntity.INSTRUCTION, locale), true);
 		t.add("Cov.", Styles.CTR2,
@@ -142,9 +143,13 @@ public class HTMLFormatter implements IHTMLReportContext {
 		t.add("Cov.", Styles.CTR2,
 				new PercentageColumn(CounterEntity.BRANCH, locale), false);
 		addMissedTotalColumns(t, "Cxty", CounterEntity.COMPLEXITY);
-		addMissedTotalColumns(t, "Lines", CounterEntity.LINE);
-		addMissedTotalColumns(t, "Methods", CounterEntity.METHOD);
-		addMissedTotalColumns(t, "Classes", CounterEntity.CLASS);
+
+		//CC报告改造：标题中文并且将missed的数据比例，改成已经覆盖的比例
+		//addMissedTotalColumns(t, "Lines", CounterEntity.LINE);
+		t.add("行覆盖", Styles.BAR, new BarColumn(CounterEntity.LINE,locale), false);
+
+		addMissedTotalColumns(t, "方法", CounterEntity.METHOD);
+		addMissedTotalColumns(t, "类", CounterEntity.CLASS);
 		return t;
 	}
 
