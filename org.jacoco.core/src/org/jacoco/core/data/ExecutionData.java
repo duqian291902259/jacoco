@@ -157,8 +157,8 @@ public final class ExecutionData {
 	 *            merge mode
 	 */
 	public void merge(final ExecutionData other, final boolean flag) {
-		// assertCompatibility(other.getId(), other.getName(),
-		// other.getProbes().length);
+		assertCompatibility(other.getId(), other.getName(),
+				other.getProbes().length);
 		// cc改造：去掉原有严格匹配ec数据的逻辑，方便合并不同提交点的覆盖率数据（前提是不同的修改没有影响，有影响的另外优化处理）
 		final boolean[] otherData = other.getProbes();
 		for (int i = 0; i < probes.length; i++) {
@@ -184,27 +184,27 @@ public final class ExecutionData {
 	 */
 	public void assertCompatibility(final long id, final String name,
 			final int probecount) throws IllegalStateException {
-		if (this.id != id) {
-			throw new IllegalStateException(
-					format("Different ids (%016x and %016x).",
-							Long.valueOf(this.id), Long.valueOf(id)));
-		}
+		/*
+		 * if (this.id != id) { throw new IllegalStateException(
+		 * format("Different ids (%016x and %016x).", Long.valueOf(this.id),
+		 * id)); }
+		 */
 		if (!this.name.equals(name)) {
 			throw new IllegalStateException(
 					format("Different class names %s and %s for id %016x.",
-							this.name, name, Long.valueOf(id)));
+							this.name, name, id));
 		}
-		if (this.probes.length != probecount) {
-			throw new IllegalStateException(format(
-					"Incompatible execution data for class %s with id %016x.",
-					name, Long.valueOf(id)));
-		}
+		/*
+		 * if (this.probes.length != probecount) { throw new
+		 * IllegalStateException(format(
+		 * "Incompatible execution data for class %s with id %016x.", name,
+		 * id)); }
+		 */
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ExecutionData[name=%s, id=%016x]", name,
-				Long.valueOf(id));
+		return String.format("ExecutionData[name=%s, id=%016x]", name, id);
 	}
 
 }
