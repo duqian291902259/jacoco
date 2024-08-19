@@ -12,10 +12,7 @@
  *******************************************************************************/
 package org.jacoco.core.analysis;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.StringTokenizer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
@@ -68,6 +65,8 @@ public class Analyzer {
 		this.stringPool = new StringPool();
 	}
 
+	private final PrintWriter err = new PrintWriter(System.err, true);
+
 	/**
 	 * Creates an ASM class visitor for analysis.
 	 *
@@ -84,7 +83,9 @@ public class Analyzer {
 		final boolean noMatch;
 		if (data == null) {
 			probes = null;
-			noMatch = executionData.contains(className);
+			boolean noMatch1 = executionData.contains(className);
+			err.printf("[DQ-WARN] executionData==null,classId=%s,noMatch=%s.", classid, noMatch1);
+			noMatch = false;
 		} else {
 			probes = data.getProbes();
 			noMatch = false;
